@@ -2,4 +2,4 @@
 
 -- Total Applications--
 
-### select COUNT(id) as total_loan_count from bank_loan
+    select COUNT(id) as total_loan_count from bank_loan
