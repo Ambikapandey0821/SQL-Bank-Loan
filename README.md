@@ -192,3 +192,28 @@ analyze loan data in real-time, enabling them to make informed decisions, mitiga
 
 ![image](https://github.com/Ambikapandey0821/SQL-Bank-Loan/assets/162020155/1026de95-a55f-4d54-8cd5-79e8d7291309)
 
+--Loan Payment Received MOM Growth %--
+
+	with cte as(
+		select month(issue_date) as Month_issue, datename(month,issue_date) as Month_name, sum(total_payment) as Amount_Received from bank_loan
+		group by month(issue_date),datename(month,issue_date)),
+		cte2 as(
+			select *, LAG(Amount_Received,1,Amount_Received) over(order by Month_issue) as Pre_month_Amount_Received
+			from cte)
+			select *, concat((amount_received-Pre_month_Amount_Received)*100/Pre_month_Amount_Received,'%') as MOM_Growth from cte2
+   
+![image](https://github.com/Ambikapandey0821/SQL-Bank-Loan/assets/162020155/95da8bf6-0197-417c-872d-a53c3b2cbd55)
+
+--Loan Amount MOM Growth %--
+
+	with cte as(
+		select month(issue_date) as Month_issue, datename(month,issue_date) as Month_name, sum(loan_amount) as Loan_Amount from bank_loan
+		group by month(issue_date),datename(month,issue_date)),
+		cte2 as(
+			select *, LAG(Loan_Amount,1,Loan_Amount) over(order by Month_issue) as Pre_month_Loan_Amount
+			from cte)
+			select *, concat((Loan_Amount-Pre_month_Loan_Amount)*100/Pre_month_Loan_Amount,'%') as MOM_Growth from cte2
+   
+![image](https://github.com/Ambikapandey0821/SQL-Bank-Loan/assets/162020155/bbf61681-ce5e-4916-bbaa-406aa3d3f939)
+
+
