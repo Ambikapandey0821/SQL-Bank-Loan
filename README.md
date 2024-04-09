@@ -122,8 +122,7 @@ analyze loan data in real-time, enabling them to make informed decisions, mitiga
 
     select MONTH(issue_date) as Month_no, DATENAME(month, issue_date) as Month_name, COUNT(id) as Total_loan_applications,
     SUM(loan_amount) as Total_loan_funded, SUM(total_payment) as Total_amount_received
-    from bank_loan
-    group by MONTH(issue_date), DATENAME(month,issue_date) order by MONTH(issue_date)
+    from bank_loan group by MONTH(issue_date), DATENAME(month,issue_date) order by MONTH(issue_date)
 
 ![image](https://github.com/Ambikapandey0821/SQL-Bank-Loan/assets/162020155/73ecb096-4143-4cab-8c66-16f0ab810660)
 
