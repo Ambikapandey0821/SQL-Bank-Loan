@@ -126,18 +126,18 @@ analyze loan data in real-time, enabling them to make informed decisions, mitiga
 
 ![image](https://github.com/Ambikapandey0821/SQL-Bank-Loan/assets/162020155/73ecb096-4143-4cab-8c66-16f0ab810660)
 
---STATE--
+--STATE-- 
 
-    SELECT 
+    SELECT top 5
 	    address_state AS State, 
 	    COUNT(id) AS Total_Loan_Applications,
 	    SUM(loan_amount) AS Total_Funded_Amount,
 	    SUM(total_payment) AS Total_Amount_Received
     FROM bank_loan
     GROUP BY address_state
-    ORDER BY address_state
+    ORDER BY SUM(loan_amount) desc
 
-![image](https://github.com/Ambikapandey0821/SQL-Bank-Loan/assets/162020155/5d5dd60f-1592-42ed-af90-825553e64942)
+![image](https://github.com/Ambikapandey0821/SQL-Bank-Loan/assets/162020155/a49ffecd-4a31-4138-8809-dabcf100be4e)
 
 --TERM--
 
@@ -214,5 +214,48 @@ analyze loan data in real-time, enabling them to make informed decisions, mitiga
 			select *, concat((Loan_Amount-Pre_month_Loan_Amount)*100/Pre_month_Loan_Amount,'%') as MOM_Growth from cte2
    
 ![image](https://github.com/Ambikapandey0821/SQL-Bank-Loan/assets/162020155/bbf61681-ce5e-4916-bbaa-406aa3d3f939)
+
+# Insights
+
+Following inferences can be drawn
+
+# Total Number of Loan Applications = 38.6K
+
+ - Total Amount Funded = 435.8 M 
+
+ - Total Amount Received = 473.1 M 
+
+ - Average Interest Rate = 12 %
+
+ - Average DTI  = 13.3 %
+           
+ # Loan
+ 
+ - Good Loan = 86.2%
+ - Bad Loan = 13.8%
+ 
+ 
+ # Tenure
+ 
+ -  73 % Loans are issued for 36 Months
+ -  27 % Loans are issued for 60 Months
+
+         
+# Purpose - Top 5 Purpose for loans 
+
+- Debt Consolidation
+- Credit card
+- Others
+- Home Improvement
+- Major Purchase
+
+
+# States - Top 5 States for Loans
+
+- CA
+- NY
+- FL
+- TX
+- NJ
 
 
